@@ -11,8 +11,8 @@ This repository contains scripts to set up a BookStack instance on AWS. The infr
 
 1. `git clone https://github.com/Gavin-Sharma/aws-cli-bookstack-script.git`
 2. `cd aws-cli-bookstack-script`
-3. `./infrastructure_script.sh`
-4. you will get a prompt on how to ssh into your ec2 (type yes if you get a pop up from aws)
+3. `./infrastructure_script.sh` (Type yes if you get a prompt)
+4. once its done you get a prompt on how to ssh into your ec2
 5. `sudo ./application_script.sh`
 
 ## Clean Up
