@@ -248,12 +248,10 @@ aws rds wait \
 # _________________________
 # Write RDS endpoint data to a file
 
-copy_application=$(
-  yes | scp -i ./$EC2_KEY_NAME.pem ./application_script.sh ubuntu@$public_ip:~/
-)
+copy_application=$(yes | scp -i ./$EC2_KEY_NAME.pem ./application_script.sh ubuntu@$public_ip:~/)
 
 # get rds endpoint
-rds_endpoint=$( aws rds describe-db-instances | yq ".DBInstances.[].Endpoint.Address") 
+rds_endpoint=$(aws rds describe-db-instances | yq ".DBInstances.[].Endpoint.Address") 
 
 # put variables into a env.sh file
 cat > env.sh <<EOL
@@ -261,8 +259,7 @@ endpoint=$rds_endpoint
 DOMAIN=$public_ip
 EOL
 
-copy_endpoint_to_ec2=$( scp -o StrictHostKeyChecking=no -i ./$EC2_KEY_NAME.pem ./env.sh ubuntu@$public_ip:~/
-)
+copy_endpoint_to_ec2=$( scp -o StrictHostKeyChecking=no -i ./$EC2_KEY_NAME.pem ./env.sh ubuntu@$public_ip:~/)
 
 
 # ________________________
