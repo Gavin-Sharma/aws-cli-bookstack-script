@@ -198,7 +198,7 @@ sleep 1
 run_pre_install_checks
 run_prompt_for_domain_if_required
 info_msg ""
-info_msg "Installing using the domain or IP \"$DOMAIN\""
+info_msg "Using EC2 Public IP \"$DOMAIN\""
 info_msg ""
 sleep 1
 

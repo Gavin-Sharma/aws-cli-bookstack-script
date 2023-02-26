@@ -14,3 +14,8 @@ This repository contains scripts to set up a BookStack instance on AWS. The infr
 3. `./infrastructure_script.sh`
 4. you will get a prompt on how to ssh into your ec2 (type yes if you get a pop up from aws)
 5. `sudo ./application_script.sh`
+
+## Clean Up
+
+Be aware before running it will clean all your subnets, vpc, ec2, sg, igw, etc 
+`./cleanup_script.sh`
