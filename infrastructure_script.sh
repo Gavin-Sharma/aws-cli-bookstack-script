@@ -248,7 +248,7 @@ aws rds wait \
 # _________________________
 # Write RDS endpoint data to a file
 
-copy_application=$(scp -i ./$EC2_KEY_NAME.pem ./application_script.sh ubuntu@$public_ip:~/)
+copy_application=$( scp -o StrictHostKeyChecking=no -i ./$EC2_KEY_NAME.pem ./application_script.sh ubuntu@$public_ip:~/)
 
 # get rds endpoint
 rds_endpoint=$(aws rds describe-db-instances | yq ".DBInstances.[].Endpoint.Address") 
