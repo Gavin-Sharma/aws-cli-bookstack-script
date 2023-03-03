@@ -154,9 +154,8 @@ function run_set_application_file_permissions() {
   git config core.fileMode false
 }
 
-# Setup apache with the needed modules and config
-function run_configure_nginx() {
-  # Set-up the required BookStack nginx config
+#nginx config
+function setup_nginx() {
   cat >/etc/nginx/sites-available/bookstack <<EOL
 server {
   listen 80;
@@ -177,17 +176,12 @@ server {
   }
 }
 EOL
-
-  # Copy Available to Enabled
+  # copy bookstack folder to sites-enabled
   cp /etc/nginx/sites-available/bookstack /etc/nginx/sites-enabled/bookstack
-
-  # Enable the BookStack Nginx site
+  # enable the bookstack
   ln -s /etc/nginx/sites-available/bookstack /etc/nginx/sites-enabled/bookstack
-
-  # Disable the default Nginx site
   rm -f /etc/nginx/sites-enabled/default /etc/nginx/site-available/default
-
-  # Restart Nginx to load new config
+  # restart nginx
   systemctl restart nginx
   systemctl restart php8.1-fpm
 }
@@ -197,9 +191,7 @@ sleep 1
 
 run_pre_install_checks
 run_prompt_for_domain_if_required
-info_msg ""
-info_msg "Using EC2 Public IP \"$DOMAIN\""
-info_msg ""
+info_msg "Give ec2 ip \"$DOMAIN\""
 sleep 1
 
 info_msg "[1/9] Installing required system packages... (This may take several minutes)"
@@ -227,7 +219,7 @@ info_msg "[8/9] Setting BookStack file & folder permissions..."
 run_set_application_file_permissions >> "$LOGPATH" 2>&1
 
 info_msg "[9/9] Configuring nginx server..."
-run_configure_nginx >> "$LOGPATH" 2>&1
+setup_nginx >> "$LOGPATH" 2>&1
 
 info_msg "----------------------------------------------------------------"
 info_msg "Setup finished, your BookStack instance should now be installed!"
