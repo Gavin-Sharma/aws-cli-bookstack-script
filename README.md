@@ -19,3 +19,6 @@ This repository contains scripts to set up a BookStack instance on AWS. The infr
 
 Be aware before running it will clean all your subnets, vpc, ec2, sg, igw, etc 
 `./cleanup_script.sh`
+
+## Documentation
+https://docs.google.com/document/d/1UschtkclAU-NcF1dArL9roDbGgkoDeeyN6GqWE6ngdw/edit?usp=sharing
